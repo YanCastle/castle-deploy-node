@@ -4,13 +4,23 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [{
-        "type": "node",
-        "request": "launch",
-        "name": "Launch Program",
-        "program": "${workspaceFolder}/dist/index.js",
-        "cwd": "${workspaceFolder}",
-        "outFiles": [
-            "${workspaceFolder}/dist/**/*.js"
-        ]
-    }]
+            "type": "node",
+            "request": "attach",
+            "name": "NodeRemote",
+            "address": "120.55.56.252",
+            "port": 9615,
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/web/nodejs/castle-deploy-node"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Program",
+            "program": "${workspaceFolder}/dist/index.js",
+            "cwd": "${workspaceFolder}",
+            "outFiles": [
+                "${workspaceFolder}/dist/**/*.js"
+            ]
+        }
+    ]
 }

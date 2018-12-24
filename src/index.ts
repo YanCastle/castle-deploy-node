@@ -7,7 +7,7 @@ import { resolve, join } from 'path';
 import { spawnSync } from 'child_process';
 // import * as SimpleGit from 'simple-git';
 const SimpleGit: any = require('simple-git')
-const rpc = new RPC('ws://localhost:20002/', 'abc')
+const rpc = new RPC('ws://120.55.56.252:20002/', 'abc1')
 rpc.on(ClientEvent.LOGINED, async () => {
     console.log('Logined')
     rpc.subscribe('gogs/push', async (data: any) => {
@@ -20,7 +20,7 @@ rpc.on(ClientEvent.LOGINED, async () => {
                 let path = resolve(join(env.GIT_DIR || './', dir, branch))
                 if (await fs.exists(resolve(path))) {
                     let git = new SimpleGit(path)
-                    git.pull()
+                    await git.pull()
                     spawnSync('tsc')
                 }
             }
