@@ -17,7 +17,7 @@ rpc.on(ClientEvent.LOGINED, async () => {
             if (p.pathname) {
                 let dir = p.pathname.substr(1);
                 let branch = data.ref.split('/').pop()
-                let path = resolve(join(env.GIT_DIR || './', dir, branch))
+                let path = resolve(join(env.WORK_DIR || './', dir, branch))
                 if (await fs.exists(resolve(path))) {
                     // let git = new SimpleGit(path)
                     // await git.pull()
