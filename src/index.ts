@@ -19,9 +19,14 @@ rpc.on(ClientEvent.LOGINED, async () => {
                 let branch = data.ref.split('/').pop()
                 let path = resolve(join(env.GIT_DIR || './', dir, branch))
                 if (await fs.exists(resolve(path))) {
-                    let git = new SimpleGit(path)
-                    await git.pull()
-                    spawnSync('tsc')
+                    // let git = new SimpleGit(path)
+                    // await git.pull()
+                    spawnSync('git', ['pull'], {
+                        cwd: path
+                    })
+                    spawnSync('tsc', [], {
+                        cwd: path
+                    })
                 }
             }
             debugger
